@@ -5,9 +5,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
+public interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor<Person> {
 
-    // If you don't need a total row count, Slice is better than Page.
-    Slice<Task> findAllBy(Pageable pageable);
-
+    Slice<Person> findAllBy(Pageable pageable);
 }

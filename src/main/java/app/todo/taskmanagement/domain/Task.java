@@ -2,8 +2,12 @@ package app.todo.taskmanagement.domain;
 
 import app.todo.base.domain.AbstractEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import org.jspecify.annotations.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -30,9 +34,26 @@ public class Task extends AbstractEntity<Long> {
     @Nullable
     private LocalDate dueDate;
 
+    @Column(name = "done", columnDefinition = "boolean default false")
+    private boolean done;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
+    @NotNull
+    @JsonIgnoreProperties({ "person" })
+    private Person person;
+
     @Override
     public @Nullable Long getId() {
         return id;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 
     public String getDescription() {
@@ -57,5 +78,12 @@ public class Task extends AbstractEntity<Long> {
 
     public void setDueDate(@Nullable LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+    public String getPerson() {
+        return person.getApellido() + ", " + person.getNombre();
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

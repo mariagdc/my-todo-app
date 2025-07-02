@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.theme.lumo.LumoUtility.*;
 
+
 public final class ViewToolbar extends Composite<Header> {
 
     public ViewToolbar(String viewTitle, Component... components) {

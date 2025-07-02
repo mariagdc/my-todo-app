@@ -13,4 +13,7 @@ To build the application in production mode, run:
 ```bash
 ./mvnw -Pproduction package
 ```
-Para empezar la aplicación correr en la terminal spring-boot:run
+Para empezar la aplicación correr en la terminal 
+```bash
+./mvn spring-boot:run
+```

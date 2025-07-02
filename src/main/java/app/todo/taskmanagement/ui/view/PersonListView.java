@@ -18,13 +18,12 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import app.todo.taskmanagement.domain.Person;
-import app.todo.taskmanagement.domain.Task;
 import app.todo.taskmanagement.service.PersonService;
 import jakarta.annotation.security.PermitAll;
 
 @Route("person-list")
 @PageTitle("Person List")
-@Menu(order = 0, icon = "vaadin:clipboard-check", title = "Person List")
+@Menu(order = 0, icon = "vaadin:clipboard-check", title = "Lista de estudiantes")
 @PermitAll // When security is enabled, allow all authenticated users
 public class PersonListView extends Main {
 
@@ -46,7 +45,7 @@ public class PersonListView extends Main {
         addClassName("contact-form");
         binder.bindInstanceFields(this);
 
-        H1 title = new H1("Administración de Personas");
+        H1 title = new H1("Registo de estudiantes");
         add(title);
         VerticalLayout content = new VerticalLayout();
 //con el Boton nuevo tiene que quedar el read only false

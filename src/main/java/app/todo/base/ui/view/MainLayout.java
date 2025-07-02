@@ -21,7 +21,7 @@ import jakarta.annotation.security.PermitAll;
 import static com.vaadin.flow.theme.lumo.LumoUtility.*;
 
 @Layout
-@PermitAll // When security is enabled, allow all authenticated users
+@PermitAll 
 public final class MainLayout extends AppLayout {
 
     MainLayout() {
@@ -30,11 +30,11 @@ public final class MainLayout extends AppLayout {
     }
 
     private Div createHeader() {
-        // TODO Replace with real application logo and name
+        
         var appLogo = VaadinIcon.CUBES.create();
         appLogo.addClassNames(TextColor.PRIMARY, IconSize.LARGE);
 
-        var appName = new Span("My Todo App");
+        var appName = new Span("Lista de Tareas");
         appName.addClassNames(FontWeight.SEMIBOLD, FontSize.LARGE);
 
         var header = new Div(appLogo, appName);
@@ -59,20 +59,20 @@ public final class MainLayout extends AppLayout {
 
     private Component createUserMenu() {
         // TODO Replace with real user information and actions
-        var avatar = new Avatar("John Smith");
+        var avatar = new Avatar("Florencia Godoy");
         avatar.addThemeVariants(AvatarVariant.LUMO_XSMALL);
         avatar.addClassNames(Margin.Right.SMALL);
-        avatar.setColorIndex(5);
+        avatar.setColorIndex(1);
 
         var userMenu = new MenuBar();
         userMenu.addThemeVariants(MenuBarVariant.LUMO_TERTIARY_INLINE);
         userMenu.addClassNames(Margin.MEDIUM);
 
         var userMenuItem = userMenu.addItem(avatar);
-        userMenuItem.add("John Smith");
-        userMenuItem.getSubMenu().addItem("View Profile").setEnabled(false);
-        userMenuItem.getSubMenu().addItem("Manage Settings").setEnabled(false);
-        userMenuItem.getSubMenu().addItem("Logout").setEnabled(false);
+        userMenuItem.add("Florencia Godoy");
+        userMenuItem.getSubMenu().addItem("Ver perfil").setEnabled(false);
+        userMenuItem.getSubMenu().addItem("Configuraciones").setEnabled(false);
+        userMenuItem.getSubMenu().addItem("Salir").setEnabled(false);
 
         return userMenu;
     }

@@ -33,8 +33,8 @@ import java.util.Optional;
 import static com.vaadin.flow.spring.data.VaadinSpringDataHelpers.toSpringPageRequest;
 
 @Route("task-list")
-@PageTitle("Task List")
-@Menu(order = 0, icon = "vaadin:clipboard-check", title = "Task List")
+@PageTitle("Tareas")
+@Menu(order = 0, icon = "vaadin:clipboard-check", title = "Lista de tareas")
 @PermitAll // When security is enabled, allow all authenticated users
 public class TaskListView extends Main {
 
@@ -60,16 +60,16 @@ public class TaskListView extends Main {
                 personComboBox.setMinWidth("20em");
 
                 description = new TextField();
-                description.setPlaceholder("What do you want to do?");
+                description.setPlaceholder("¿Qué tarea quieres agregar?");
                 description.setAriaLabel("Task description");
                 description.setMaxLength(Task.DESCRIPTION_MAX_LENGTH);
                 description.setMinWidth("20em");
 
                 dueDate = new DatePicker();
-                dueDate.setPlaceholder("Due date");
+                dueDate.setPlaceholder("Fecha de vencimiento");
                 dueDate.setAriaLabel("Due date");
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-                createBtn = new Button("Create", event -> createTask());
+                createBtn = new Button("Crear", event -> createTask());
                 createBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
                 var dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
@@ -88,7 +88,7 @@ public class TaskListView extends Main {
                                 // changes
                         });
                         return checkbox;
-                }).setHeader("Done");
+                }).setHeader("Realizado");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
                 taskGrid.addColumn(task -> {
@@ -98,16 +98,16 @@ public class TaskListView extends Main {
                         } else if (personObj instanceof String str) {
                                 return str;
                         } else {
-                                return "Unassigned";
+                                return "Sin asignar";
                         }
-                }).setHeader("Assigned to");
+                }).setHeader("Responsable");
                 ///////////////////////////////////////////////////////////////////////////////////
 
-                taskGrid.addColumn(Task::getDescription).setHeader("Description");
+                taskGrid.addColumn(Task::getDescription).setHeader("Descripcion");
                 taskGrid.addColumn(task -> Optional.ofNullable(task.getDueDate()).map(dateFormatter::format)
-                                .orElse("Never"))
-                                .setHeader("Due Date");
-                taskGrid.addColumn(task -> dateTimeFormatter.format(task.getCreationDate())).setHeader("Creation Date");
+                                .orElse("Nunca"))
+                                .setHeader("Fecha de Vencimiento");
+                taskGrid.addColumn(task -> dateTimeFormatter.format(task.getCreationDate())).setHeader("Fecha de Creación");
                 taskGrid.addComponentColumn(task -> {
                         Button deleteButton = new Button(new Icon(VaadinIcon.TRASH), event -> {
 
@@ -138,7 +138,7 @@ public class TaskListView extends Main {
                         deleteButton.setTooltipText("Close the dialog");
                         // deleteBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
                         return deleteButton;
-                }).setHeader("Delete");
+                }).setHeader("Borrar");
 
                 taskGrid.setSizeFull();
 
@@ -146,7 +146,7 @@ public class TaskListView extends Main {
                 addClassNames(LumoUtility.BoxSizing.BORDER, LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN,
                                 LumoUtility.Padding.MEDIUM, LumoUtility.Gap.SMALL);
 
-                add(new ViewToolbar("Task List", ViewToolbar.group(personComboBox,description, dueDate, createBtn)));
+                add(new ViewToolbar("Lista de Tareas", ViewToolbar.group(personComboBox,description, dueDate, createBtn)));
                 add(taskGrid);
         }
 
@@ -155,10 +155,10 @@ public class TaskListView extends Main {
                 taskGrid.getDataProvider().refreshAll();
                 description.clear();
                 dueDate.clear();
-                Notification.show("Task added", 3000, Notification.Position.BOTTOM_END)
+                Notification.show("Tarea añadida", 3000, Notification.Position.BOTTOM_END)
                                 .addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         }
 
-        // AGREGAR EL COMBOBOX QUE Vincule la persona a la TAREA
+       
 
 }

@@ -1,0 +1,11 @@
+:host {
+    --lumo-primary-color: #7C4DFF;       /* Violeta */
+    --lumo-primary-color-50pct: rgba(124, 77, 255, 0.5);
+    --lumo-primary-color-10pct: rgba(124, 77, 255, 0.1);
+
+    --lumo-primary-text-color: white;
+    --lumo-base-color: #f3f0ff;          /* Fondo suave */
+    --lumo-body-text-color: #3e3e5e;
+
+    --lumo-font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
